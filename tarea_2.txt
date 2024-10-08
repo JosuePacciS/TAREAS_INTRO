@@ -1,0 +1,159 @@
+                          AREGLOS Y MATRICES
+Ejercicio 1
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeros = new int[10];
+        
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Ingresa el número: ");
+            numeros[i] = scanner.nextInt();
+        }
+
+        int contadorPositivos = 0;
+        int contadorNegativos = 0;
+        int contadorCeros = 0;
+
+        for (int i = 0; i < 10; i++) {
+            if (numeros[i] > 0) {
+                contadorPositivos++;
+            } else if (numeros[i] < 0) {
+                contadorNegativos++;
+            } else {
+                contadorCeros++;
+            }
+        }
+        System.out.println("Cantidad de números positivos: " + contadorPositivos);
+        System.out.println("Cantidad de números negativos: " + contadorNegativos);
+        System.out.println("Cantidad de ceros: " + contadorCeros);
+    }
+}
+Ejercicio 2
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeros = new int[10];
+        int sumaPositivos = 0;
+        int sumaNegativos = 0;
+        int contadorPositivos = 0;
+        int contadorNegativos = 0;
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Ingresa un número: ");
+            numeros[i] = scanner.nextInt();
+        }
+
+        for (int numero : numeros) {
+            if (numero > 0) {
+                sumaPositivos += numero;
+                contadorPositivos++;
+            } else if (numero < 0) {
+                sumaNegativos += numero;
+                contadorNegativos++;
+            }
+        }
+
+        if (contadorPositivos > 0) {
+            int mediaPositivos = sumaPositivos / contadorPositivos;
+            System.out.println("La media de los valores positivos es: " + mediaPositivos);
+        } else {
+            System.out.println("No hay valores positivos.");
+        }
+        if (contadorNegativos > 0) {
+            int mediaNegativos = sumaNegativos / contadorNegativos;
+            System.out.println("La media de los valores negativos es: " + mediaNegativos);
+        } else {
+            System.out.println("No hay valores negativos.");
+        }
+    }
+}
+Ejercicio 3 
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingresa el número de personas: ");
+        int N = scanner.nextInt();
+
+        while (N <= 0) {
+            System.out.print("Ingresa un número entero positivo: ");
+            N = scanner.nextInt();
+        }
+
+        int[] alturas = new int[N];
+        int sumaAlturas = 0;
+
+        for (int i = 0; i < N; i++) {
+            System.out.print("Ingresa la altura de la persona (en metros): ");
+            alturas[i] = scanner.nextInt();
+            sumaAlturas += alturas[i];
+        }
+
+        int mediaAltura = sumaAlturas / N;
+
+        int contadorSuperior = 0;
+        int contadorInferior = 0;
+
+        for (int i = 0; i < N; i++) {
+            if (alturas[i] > mediaAltura) {
+                contadorSuperior++;
+            } else if (alturas[i] < mediaAltura) {
+                contadorInferior++;
+            }
+        }
+
+        System.out.println("La altura media es: " + mediaAltura + " metros.");
+        System.out.println("Cantidad de personas con altura superior a la media: " + contadorSuperior);
+        System.out.println("Cantidad de personas con altura inferior a la media: " + contadorInferior);
+
+    }
+}
+Ejercicio 4
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        int[] numeros = new int[10];
+        int sumaPositivos = 0;
+        int sumaNegativos = 0;
+        int contadorPositivos = 0;
+        int contadorNegativos = 0;
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Ingresa el número: ");
+            numeros[i] = scanner.nextInt();
+            
+            if (numeros[i] > 0) {
+                sumaPositivos += numeros[i];
+                contadorPositivos++;
+            } else if (numeros[i] < 0) {
+                sumaNegativos += numeros[i];
+                contadorNegativos++;
+            }
+        }
+
+        if (contadorPositivos > 0) {
+            int mediaPositivos = sumaPositivos / contadorPositivos;
+            System.out.println("La media de los valores positivos es: " + mediaPositivos);
+        } else {
+            System.out.println("No hay valores positivos.");
+        }
+
+        if (contadorNegativos > 0) {
+            int mediaNegativos = sumaNegativos / contadorNegativos;
+            System.out.println("La media de los valores negativos es: " + mediaNegativos);
+        } else {
+            System.out.println("No hay valores negativos.");
+        }
+
+    }
+}
