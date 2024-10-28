@@ -1,0 +1,737 @@
+                                      PRACTICA DE PROGRAMACION
+EJERCICIO 1 
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        // Costos fijos y variables
+         int costoFijoDiario = 800;
+         int costoVariablePorSombrero = 20;
+         int costoMaximoPorSombrero = 25;
+
+        // Cálculamos el número mínimo de sombreros diarios
+        int sombrerosMinimosDiarios = calcularSombrerosMinimos(costoFijoDiario, costoVariablePorSombrero, costoMaximoPorSombrero);
+
+        // Solicitamos el número de días en el mes
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el número de días en el mes: ");
+        int diasDelMes = scanner.nextInt();
+
+        // Cálculamos la producción mensual
+        int sombrerosMinimosMensuales = sombrerosMinimosDiarios * diasDelMes;
+
+        // Mostramos el resultado
+        System.out.println("La fábrica debe producir al menos " + sombrerosMinimosMensuales + " sombreros al mes.");
+        
+    }
+
+    public static int calcularSombrerosMinimos(int costoFijo, int costoVariable, int costoMaximo) {
+        // Calculamos el número mínimo de sombreros que se deben producir diariamente
+        return (costoFijo / (costoMaximo - costoVariable)) + 1; // Se suma 1 para asegurarse de que sea mayor
+    }
+}
+EJERCICIO 2
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Ingrese un número: ");
+        int numero = scanner.nextInt();
+        
+        boolean esEspecial = esNumeroEspecial(numero);
+        
+        if (esEspecial) {
+            System.out.println("El número " + numero + " es especial.");
+        } else {
+            System.out.println("El número " + numero + " no es especial.");
+        }
+        
+    }
+        public static boolean esNumeroEspecial(int numero) {
+        if (numero <= 0) {
+            return false;
+        }
+        boolean divisiblePor3 = (numero % 3 == 0);
+        boolean divisiblePor100 = (numero % 100 == 0);
+        boolean divisiblePor300 = (numero % 300 == 0);
+
+        return divisiblePor3 && (!divisiblePor100 || divisiblePor300);
+    }
+}
+EJERCICIO 3
+public class Main{
+	public static void main(String[] args) {
+	    int UltimoNumero = 21;
+	    int incremento = 5;
+	    
+		System.out.println("Secuencia: 3,8,12,16,21");
+		for (int i = 0; i<5 ; i++){
+		    UltimoNumero = UltimoNumero + incremento;
+		    System.out.print(","+ UltimoNumero);
+		    if (incremento == 5){
+		        incremento = 4;
+		    } else {
+		        incremento = 5;
+		    }
+		}
+	}
+}
+EJERCICIO 4
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int[] numeros = new int[20];
+        int puntos = 0;
+        System.out.println("Ingrese 20 números:");
+        for (int i = 0; i < 20; i++) {
+            numeros[i] = scanner.nextInt();
+        }
+        for (int numero : numeros) {
+            boolean esPrimo = true;
+            if (numero <= 1) {
+                esPrimo = false;
+            } else {
+                for (int i = 2; i <= Math.sqrt(numero); i++) {
+                    if (numero % i == 0) {
+                        esPrimo = false;
+                        break;
+                    }
+                }
+            }
+            if (esPrimo) {
+                puntos =puntos + 4;
+            }
+            if (numero % 2 == 0) {
+                puntos =puntos + 1;
+            }
+            if (numero % 7 == 0) {
+                puntos =puntos + 2;
+            }
+        }
+        if (puntos > 70) {
+            System.out.println("¡Felicidades! La ficha es ganadora con " + puntos + " puntos.");
+        } else {
+            System.out.println("Lo siento, la ficha no es ganadora. Total de puntos: " + puntos);
+        }
+    }
+}
+EJERCICIO 5
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese su número de ficha: ");
+        String numeroFicha = scanner.nextLine();
+        if (esNumeroEspejo(numeroFicha)) {
+            System.out.println("Te tocó ir a las clases presenciales.");
+        } else {
+            System.out.println("Te quedas en casita, ¡pero a estudiar!");
+        }
+    }
+    public static boolean esNumeroEspejo(String numero) {
+        String numeroReverso = new StringBuilder(numero).reverse().toString();
+        return numero.equals(numeroReverso);
+    }
+}
+Ejercicio 6
+n = 9
+while n > 0:
+ if n % 2 == 0:
+ print("Par")
+ else:
+ print("Impar")
+ n – = 3   RESPUESTA : Imprimira 6 por que "n=9" es impar y se le restara 3 
+EJERCICIO 7
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        clasificarEstudiantes();
+    }
+    public static void clasificarEstudiantes() {
+        Random random = new Random();
+        int[] edades = new int[1000];
+        int grupo1 = 0, grupo2 = 0, grupo3 = 0, grupo4 = 0;
+        for (int i = 0; i < edades.length; i++) {
+            edades[i] = random.nextInt(8) + 10;
+        }
+        for (int edad : edades) {
+            if (edad % 5 == 0 && edad % 2 != 0) {
+                grupo1++;
+            } else if (edad % 4 == 0) {
+                grupo2++;
+            } else if (edad % 3 == 0 && edad % 4 != 0 && edad % 5 != 0 && edad % 2 != 0) {
+                grupo3++;
+            } else {
+                grupo4++;
+            }
+        }
+        System.out.println("Grupo 1: " + grupo1 + " estudiantes");
+        System.out.println("Grupo 2: " + grupo2 + " estudiantes");
+        System.out.println("Grupo 3: " + grupo3 + " estudiantes");
+        System.out.println("Grupo 4: " + grupo4 + " estudiantes");
+    }
+}
+EJERCICIO 8 
+Este código imprime "Sí" si el número es primo y "No" si no lo es, después de verificar correctamente todos los posibles divisores.
+
+EJERCICIO 9
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa los puntos acumulados: ");
+        int puntos = scanner.nextInt();
+
+        System.out.print("Ingresa el salario anual: ");
+        double salarioAnual = scanner.nextDouble();
+        double bonificacion;
+        if (puntos < 50) {
+            bonificacion = 0;
+        } else if (puntos <= 99) {
+            bonificacion = 0.05 * salarioAnual;
+        } else {
+            bonificacion = 0.10 * salarioAnual + 500;
+        }
+        System.out.println("La bonificación es: " + bonificacion + " Bs");
+    }
+}
+EJERCICIO 10
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Double> notas = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Ingrese la nota del estudiante " + (i + 1) + ": ");
+            double nota = scanner.nextDouble();
+            notas.add(nota);
+        }
+        System.out.println("Notas ingresadas: " + notas);
+        double totalNotas = 0;
+        for (double nota : notas) {
+            totalNotas += nota;
+        }
+        int cantidadEstudiantes = notas.size();
+        double promedio = totalNotas / cantidadEstudiantes;
+        System.out.println("El promedio de las notas es: " + promedio);
+        double notaMaxima = notas.get(0);
+        double notaMinima = notas.get(0);
+        for (double nota : notas) {
+            if (nota > notaMaxima) {
+                notaMaxima = nota;
+            }
+            if (nota < notaMinima) {
+                notaMinima = nota;
+            }
+        }
+        System.out.println("La nota más alta es: " + notaMaxima);
+        System.out.println("La nota más baja es: " + notaMinima);
+    }
+}
+EJERCICIO 11
+public class Main {
+    public static void main(String[] args) {
+        int costoBicicleta = 1200;
+        int ahorrosIniciales = 250;
+        int ahorroSemanal = 25;
+        int cantidadRestante = costoBicicleta - ahorrosIniciales;
+        int semanasNecesarias = cantidadRestante / ahorroSemanal;
+        if (cantidadRestante % ahorroSemanal != 0) {
+            semanasNecesarias += 1;
+        }
+        System.out.println("María debe ahorrar por " + semanasNecesarias + " semanas para comprarse la bicicleta.");
+    }
+}
+EJERCICIO 12
+public class Main {
+    public static void main(String[] args) {
+        double precioTotal = 3500;
+        double primerPago = 500;
+        double porcentajePago = 0.15;
+        double deudaMinima = 100;
+        double deuda = precioTotal - primerPago;
+        int cuotas = 1;
+        System.out.println("Mes 1: Debes pagar 500 Bs");
+        while (deuda > deudaMinima) {
+            double pagoMensual = deuda * porcentajePago;
+            deuda -= pagoMensual;
+            cuotas++;
+            System.out.println("Mes " + cuotas + ": Debes pagar " + pagoMensual + " Bs");
+        }
+        cuotas++;
+        System.out.println("Mes " + cuotas + ": Debes pagar " + deuda + " Bs");
+        System.out.println("Número total de cuotas: " + cuotas);
+    }
+}
+EJERCICIO 13
+public class Main {
+    public static void main(String[] args) {
+        int diferenciaHoraria = 6;
+        int horaAlemania = 8;  
+        int horaBolivia = horaAlemania - diferenciaHoraria;
+        if (horaBolivia < 0) {
+            horaBolivia += 24;
+        }
+        System.out.println("Debes enviar tu documento a las " + horaBolivia + " de la mañana en hora boliviana.");
+    }
+}
+EJERCICIO 14
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Map<Character, String> claveSustitucion = new HashMap<>();
+        inicializarClaveSustitucion(claveSustitucion);
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa un nombre para cifrar: ");
+        String nombre = scanner.nextLine();
+        String cifrado = cifrarNombre(nombre, claveSustitucion);
+        System.out.println("El nombre cifrado es: " + cifrado);
+    }
+    private static void inicializarClaveSustitucion(Map<Character, String> claveSustitucion) {
+        claveSustitucion.put('A', "01");
+        claveSustitucion.put('B', "02");
+        claveSustitucion.put('C', "03");
+        claveSustitucion.put('D', "04");
+        claveSustitucion.put('E', "05");
+        claveSustitucion.put('F', "06");
+        claveSustitucion.put('G', "07");
+        claveSustitucion.put('H', "08");
+        claveSustitucion.put('I', "09");
+        claveSustitucion.put('J', "10");
+        claveSustitucion.put('K', "11");
+        claveSustitucion.put('L', "12");
+        claveSustitucion.put('M', "13");
+        claveSustitucion.put('N', "14");
+        claveSustitucion.put('O', "15");
+        claveSustitucion.put('P', "16");
+        claveSustitucion.put('Q', "17");
+        claveSustitucion.put('R', "18");
+        claveSustitucion.put('S', "19");
+        claveSustitucion.put('T', "20");
+        claveSustitucion.put('U', "21");
+        claveSustitucion.put('V', "22");
+        claveSustitucion.put('W', "23");
+        claveSustitucion.put('X', "24");
+        claveSustitucion.put('Y', "25");
+        claveSustitucion.put('Z', "26");
+        claveSustitucion.put(' ', "00");
+    }
+    private static String cifrarNombre(String nombre, Map<Character, String> claveSustitucion) {
+        nombre = nombre.toUpperCase();  
+        StringBuilder cifrado = new StringBuilder();
+        for (char letra : nombre.toCharArray()) {
+            cifrado.append(claveSustitucion.get(letra));
+        }
+        return cifrado.toString();
+    }
+}
+EJERCICIO 15
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int anchoSala = 100;
+        int largoSala = 60;
+        int espacioPorMesa = 2;
+        int capacidadMesa = 3;
+        int areaSala = anchoSala * largoSala;  
+        int numMesas = areaSala / espacioPorMesa; 
+        int capacidadTotal = numMesas * capacidadMesa;
+        int participantesRegistrados = 0;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("¿Cuántos estudiantes deseas registrar? ");
+        int numParticipantesARegistrar = scanner.nextInt();
+        scanner.nextLine();
+
+        for (int i = 0; i < numParticipantesARegistrar; i++) {
+            System.out.print("Ingresa el nombre del participante: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Ingresa la edad del participante: ");
+            int edad = scanner.nextInt();
+            scanner.nextLine;
+            if (edad > 15 && edad < 30) {
+                if (participantesRegistrados < capacidadTotal) {
+                    System.out.println("¡Felicidades! " + nombre + ", estás dentro.");
+                    participantesRegistrados++;
+                } else {
+                    System.out.println("Lo siento, " + nombre + ", el evento está lleno.");
+                }
+            } else {
+                System.out.println("Lo siento, " + nombre + ", tu edad no está en el rango definido.");
+            }
+        }
+        System.out.println("Número total de participantes registrados: " + participantesRegistrados);
+    }
+}
+EJERCICIO 16
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> dados = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < 6; i++) {
+            System.out.print("Ingrese el valor del dado " + (i + 1) + " (entre 1 y 6): ");
+            int valor = scanner.nextInt();
+            dados.add(valor);
+        }
+        int suma = 0;
+        for (int valor : dados) {
+            suma = suma + valor;
+        }
+        System.out.println("Podrías hacerlo mejor: " + suma + " :)");
+        if (suma <= 8) {
+            System.out.println("La jugada es baja.");
+        } else if (suma > 8 && suma <= 35) {
+            System.out.println("La jugada es mediana.");
+        } else if (suma > 35 && suma < 36) {
+            System.out.println("La jugada es alta.");
+        } else if (suma == 36) {
+            System.out.println("La jugada es perfecta.");
+        }
+    }
+}
+EJERCICIO 17 
+public class Main {
+
+    public static void main(String[] args){
+        double yenes = 285100;
+        double[] viaticos = calcularViaticos(yenes);
+        double dolares = viaticos[0];
+        double bolivianosOficial = viaticos[1];
+        double bolivianosExtraoficial = viaticos[2];
+        System.out.println("El valor en dólares es: " + dolares);
+        System.out.println("El valor en bolivianos al cambio oficial es: " + bolivianosOficial);
+        System.out.println("El valor en bolivianos al cambio fuera de los bancos es: " + bolivianosExtraoficial);
+        mostrarMensaje(dolares);
+    }
+
+    public static double[] calcularViaticos(double yenes) {
+        double dolarPorYen = 1 / 142.55;
+        double bolivianoPorDolarOficial = 6.85;
+        double bolivianoPorDolarExtraoficial = bolivianoPorDolarOficial * 1.5;
+
+        double dolares = yenes * dolarPorYen;
+        double bolivianosOficial = dolares * bolivianoPorDolarOficial;
+        double bolivianosExtraoficial = dolares * bolivianoPorDolarExtraoficial;
+
+        return new double[]{dolares, bolivianosOficial, bolivianosExtraoficial};
+    }
+    public static void mostrarMensaje(double dolares) {
+        if (dolares >= 1500) {
+            System.out.println("No requieres más fondos");
+        } else {
+            System.out.println("Debes conseguir más fondos");
+        }
+    }
+}
+EJERCICIO 18
+import java.util.HashMap;
+import java.util.Map;
+
+public class Main {
+    public static void main(String[] args) {
+        double montoTotal = 14000;
+        Map<String, Double> categorias = new HashMap<>();
+        categorias.put("Laptop", 0.50);
+        categorias.put("Muebles", 0.10); 
+        categorias.put("Publicidad", 0.30); 
+        categorias.put("Aplicaciones", 0.10);
+        Map<String, Double> intereses = new HashMap<>();
+        intereses.put("Laptop", 0.05); 
+        intereses.put("Muebles", 0.07); 
+        intereses.put("Publicidad", 0.10); 
+        intereses.put("Aplicaciones", 0.12);
+        intereses.put("Viáticos", 0.12); 
+        intereses.put("Capacitación", 0.07);  
+        intereses.put("Sobrante", 0.15);  
+
+        Map<String, Double> montoInvertido = new HashMap<>();
+        for (Map.Entry<String, Double> categoria : categorias.entrySet()) {
+            montoInvertido.put(categoria.getKey(), montoTotal * categoria.getValue());
+        }
+        Map<String, Double> interesMensual = new HashMap<>();
+        for (Map.Entry<String, Double> categoria : montoInvertido.entrySet()) {
+            interesMensual.put(categoria.getKey(), categoria.getValue() * intereses.getOrDefault(categoria.getKey(), 0.0));
+        }
+        double pagoMensual = 0;
+        for (double interes : interesMensual.values()) {
+            pagoMensual += interes;
+        }
+
+        double montoSobrante = montoTotal - montoInvertido.values().stream().mapToDouble(Double::doubleValue).sum();
+        System.out.println("Monto invertido en Laptop: " + montoInvertido.get("Laptop") + " Bolivianos");
+        System.out.println("Monto invertido en Muebles: " + montoInvertido.get("Muebles") + " Bolivianos");
+        System.out.println("Monto invertido en Publicidad: " + montoInvertido.get("Publicidad") + " Bolivianos");
+        System.out.println("Monto invertido en Aplicaciones: " + montoInvertido.get("Aplicaciones") + " Bolivianos");
+        System.out.println("Cada mes, durante dos años debes pagar: " + pagoMensual + " Bolivianos");
+
+        if (montoSobrante > 0) {
+            System.out.println("Hay un monto sobrante de: " + montoSobrante + " Bolivianos");
+        } else {
+            System.out.println("No hay monto sobrante.");
+        }
+    }
+}
+EJERCICIO 19
+public class Main {
+    public static void main(String[] args) {
+        int tablasLargas = 26;
+        int tablasCortas = 33;
+        int ganchosPequenos = 200;
+        int ganchosGrandes = 20;
+        int tornillos = 510;
+        int tablasLargasEstante = 4;
+        int tablasCortasEstante = 6;
+        int ganchosPequenosEstante = 12;
+        int ganchosGrandesEstante = 2;
+        int tornillosEstante = 14;
+        int estantesPedido = 15;
+        int tablasLargasNecesarias = estantesPedido * tablasLargasEstante;
+        int tablasCortasNecesarias = estantesPedido * tablasCortasEstante;
+        int ganchosPequenosNecesarios = estantesPedido * ganchosPequenosEstante;
+        int ganchosGrandesNecesarios = estantesPedido * ganchosGrandesEstante;
+        int tornillosNecesarios = estantesPedido * tornillosEstante;
+        if (tablasLargas >= tablasLargasNecesarias && tablasCortas >= tablasCortasNecesarias &&
+            ganchosPequenos >= ganchosPequenosNecesarios && ganchosGrandes >= ganchosGrandesNecesarios &&
+            tornillos >= tornillosNecesarios) {
+            
+            System.out.println("Es posible realizar los 15 estantes pedidos.");
+            int tablasLargasSobrantes = tablasLargas - tablasLargasNecesarias;
+            int tablasCortasSobrantes = tablasCortas - tablasCortasNecesarias;
+            int ganchosPequenosSobrantes = ganchosPequenos - ganchosPequenosNecesarios;
+            int ganchosGrandesSobrantes = ganchosGrandes - ganchosGrandesNecesarios;
+            int tornillosSobrantes = tornillos - tornillosNecesarios;
+
+            int estantesAdicionales = Math.min(tablasLargasSobrantes / tablasLargasEstante, 
+                                      Math.min(tablasCortasSobrantes / tablasCortasEstante, 
+                                      Math.min(ganchosPequenosSobrantes / ganchosPequenosEstante, 
+                                      Math.min(ganchosGrandesSobrantes / ganchosGrandesEstante,tornillosSobrantes / tornillosEstante))));
+            System.out.println("Con el material sobrante, se pueden construir " + estantesAdicionales + " estantes adicionales.");
+        } else {
+            System.out.println("No hay suficientes materiales para realizar los 15 estantes pedidos.");
+        }
+    }
+}
+EJERCICIO 20
+import java.util.HashMap;
+
+public class Main {
+    public static void main(String[] args) {
+        HashMap<String, Integer> inventario = new HashMap<>();
+        inventario.put("manzanas", 10);
+        inventario.put("plátanos", 5);
+        inventario.put("peras", 3);
+        HashMap<String, Integer> pedido = new HashMap<>();
+        pedido.put("manzanas", 5);
+        pedido.put("plátanos", 8);
+        pedido.put("peras", 2);
+        
+        HashMap<String, Integer> pedidoFinal = new HashMap<>();
+        
+        for (String item : pedido.keySet()) {
+            int cantidadPedido = pedido.get(item);
+            if (inventario.containsKey(item)) {
+                int cantidadInventario = inventario.get(item);
+                if (cantidadPedido <= cantidadInventario) {
+                    pedidoFinal.put(item, cantidadPedido);
+                } else {
+                    pedidoFinal.put(item, cantidadInventario);
+                }
+            } else {
+                System.out.println("El ítem " + item + " no está en el inventario.");
+            }
+        }
+        System.out.println("Pedido final: " + pedidoFinal);
+    }
+}
+EJERCICIO 21
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa el nombre del cliente: ");
+        String nombreCliente = scanner.nextLine();
+        Cliente cliente = new Cliente(nombreCliente);
+        List<Map<String, Object>> paquetes = new ArrayList<>();
+
+        for (int i = 1; i <= 3; i++) {
+            System.out.print("Ingresa el peso del paquete " + i + " en gramos: ");
+            int peso = scanner.nextInt();
+            scanner.nextLine();
+            System.out.print("Ingresa la descripción del paquete " + i + ": ");
+            String descripcion = scanner.nextLine();
+
+            Map<String, Object> paquete = new HashMap<>();
+            paquete.put("peso", peso);
+            paquete.put("descripcion", descripcion);
+            paquetes.add(paquete);
+        }
+
+        List<String> resultados = calcularEnvio(cliente, paquetes);
+        for (String mensaje : resultados) {
+            System.out.println(mensaje);
+        }
+
+        scanner.close();
+    }
+
+    public static List<String> calcularEnvio(Cliente cliente, List<Map<String, Object>> paquetes) {
+        HashMap<String, Double> tarifas = new HashMap<>();
+        tarifas.put("0-20", 3.5);
+        tarifas.put("21-50", 4.5);
+        tarifas.put("51-100", 5.8);
+        tarifas.put("101-200", 7.0);
+        tarifas.put("201-350", 8.0);
+        tarifas.put("351-500", 9.0);
+        tarifas.put("501-1000", 12.0);
+        tarifas.put("1001-2000", 17.0);
+        tarifas.put("2001-3000", 21.0);
+
+        List<String> mensajes = new ArrayList<>();
+        mensajes.add("Hola " + cliente.nombre + ", estas son las opciones de envío:");
+        double costoIndividual = 0;
+        for (Map<String, Object> paquete : paquetes) {
+            int peso = (int) paquete.get("peso");
+            String descripcion = (String) paquete.get("descripcion");
+
+            for (Map.Entry<String, Double> entry : tarifas.entrySet()) {
+                String rango = entry.getKey();
+                double tarifa = entry.getValue();
+                String[] limites = rango.split("-");
+                int rangoMin = Integer.parseInt(limites[0]);
+                int rangoMax = Integer.parseInt(limites[1]);
+
+                if (peso >= rangoMin && peso <= rangoMax) {
+                    costoIndividual += tarifa;
+                    mensajes.add(" - " + descripcion + ": " + tarifa + " Bs (individual)");
+                    break;
+                }
+            }
+        }
+        int pesoTotal = paquetes.stream().mapToInt(paquete -> (int) paquete.get("peso")).sum();
+        double costoTotal = 0;
+        for (Map.Entry<String, Double> entry : tarifas.entrySet()) {
+            String rango = entry.getKey();
+            double tarifa = entry.getValue();
+            String[] limites = rango.split("-");
+            int rangoMin = Integer.parseInt(limites[0]);
+            int rangoMax = Integer.parseInt(limites[1]);
+
+            if (pesoTotal >= rangoMin && pesoTotal <= rangoMax) {
+                costoTotal = tarifa;
+                mensajes.add(" - Envío conjunto: " + tarifa + " Bs (total)");
+                break;
+            }
+        }
+
+        if (costoIndividual < costoTotal) {
+            mensajes.add("El costo más barato es enviar los paquetes individualmente: " + costoIndividual + " Bs");
+        } else {
+            mensajes.add("El costo más barato es enviar todos los paquetes juntos: " + costoTotal + " Bs");
+        }
+
+        return mensajes;
+    }
+}
+
+class Cliente {
+    String nombre;
+
+    public Cliente(String nombre) {
+        this.nombre = nombre;
+    }
+}
+EJERCICIO 22
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static int calcularDiametroMoneda(int diametroAnterior) {
+        int nuevoDiametro = (int) Math.round(diametroAnterior * 1.3);
+        return nuevoDiametro;
+    }
+    public static List<Integer> generarMonedas(int numeroMonedas) {
+        List<Integer> diametros = new ArrayList<>();
+        int diametroActual = 20;
+        
+        for (int i = 0; i < numeroMonedas; i++) {
+            diametros.add(diametroActual);
+            diametroActual = calcularDiametroMoneda(diametroActual);
+            if (diametroActual > 60) {
+                return null; 
+            }
+        }
+        return diametros;
+    }
+    public static void main(String[] args) {
+        int numeroMonedas = 6;
+        List<Integer> diametros = generarMonedas(numeroMonedas);
+        if (diametros == null) {
+            int maxMonedas = 1;
+            while (generarMonedas(maxMonedas) != null) {
+                maxMonedas++;
+            }
+            System.out.println("No se pueden generar " + numeroMonedas + " monedas. " +
+                    "El máximo posible es " + maxMonedas + " monedas.");
+        } else {
+            System.out.println("Se pueden generar " + numeroMonedas + " monedas con los siguientes diámetros: " + diametros);
+        }
+    }
+}
+EJERCICIO 23
+public class Main {
+
+    public static void main(String[] args) {
+        int[] monedas = {5, 10, 20, 50, 100, 200};
+        Integer[] diametros = {20, null, null, null, null, 60};
+        int diametroInicial = diametros[0];
+        int diametroFinal = diametros[diametros.length - 1];
+        double constante = (diametroFinal - diametroInicial) / (double)(monedas.length - 1);
+
+        for (int i = 1; i < monedas.length - 1; i++) {
+            diametros[i] = (int)(diametroInicial + i * constante);
+        }
+
+        System.out.printf("Constante de incremento: %.2f%n", constante);
+        System.out.print("Diámetros de las monedas: ");
+        for (Integer diametro : diametros) {
+            System.out.print(diametro + " ");
+        }
+    }
+}
+EJERCICIO 24
+for i in range(1, 10):
+for j in range(1, 2):
+i+=3
+print(f"({i}, {j})", end=" ")
+print()
+las variables son: i y j 
+su estructura de control: Tienes dos ford bucles, el bucle externo itera "i" y el bucle interno "j", print es una fucion de impresion de resultado
+                          Fucionamiento de la estructura: El bucle externo recorre los valores de i desde 1 hasta 9.
+                          El bucle interno se ejecuta solo una vez (para j = 1) en cada iteración del bucle externo.
+                          Cada vez que se ejecuta el bucle interno, i se incrementa en 3 y se imprime.
+Que imprime este codigo: (4,1)y(8,1)
+Si se elimina la tercera linea de codigo cual sera la impresion: Sin la línea i += 3, el bucle externo simplemente imprime i en cada iteración del bucle externo, mostrando todos los                 		                                                 valores de 1 a 9, junto con j que es siempre 1.
