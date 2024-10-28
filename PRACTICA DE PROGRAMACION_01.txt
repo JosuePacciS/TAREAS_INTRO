@@ -734,4 +734,4 @@ su estructura de control: Tienes dos ford bucles, el bucle externo itera "i" y e
                           El bucle interno se ejecuta solo una vez (para j = 1) en cada iteración del bucle externo.
                           Cada vez que se ejecuta el bucle interno, i se incrementa en 3 y se imprime.
 Que imprime este codigo: (4,1)y(8,1)
-Si se elimina la tercera linea de codigo cual sera la impresion: Sin la línea i += 3, el bucle externo simplemente imprime i en cada iteración del bucle externo, mostrando todos los                 		                                                 valores de 1 a 9, junto con j que es siempre 1.
+Si se elimina la tercera linea de codigo cual sera la impresion: Sin la línea i += 3, el bucle externo simplemente imprime i en cada iteración del bucle externo, mostrando todos los valores de 1 a 9, junto con j que es siempre 1.
