@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+public class Main {
+    public static double[] obtenerPesos() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el número de paquetes: ");
+        int n = scanner.nextInt();
+        double[] pesos = new double[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Ingrese el peso del paquete " + (i + 1) + " en gramos: ");
+            pesos[i] = scanner.nextDouble();
+        }
+        return pesos;
+    }
+    public static double calcularCostoIndividual(double[] pesos) {
+        double costoIndividual = 0;
+        for (double peso : pesos) {
+            if (peso <= 20) {
+                costoIndividual += 3.5;
+            } else if (peso <= 50) {
+                costoIndividual += 4.5;
+            } else if (peso <= 100) {
+                costoIndividual += 5.8;
+            } else if (peso <= 200) {
+                costoIndividual += 7;
+            } else if (peso <= 350) {
+                costoIndividual += 8;
+            }
+        }
+        return costoIndividual;
+    }
+    public static double calcularCostoUnico(double pesoTotal) {
+        if (pesoTotal <= 20) {
+            return 3.5;
+        } else if (pesoTotal <= 50) {
+            return 4.5;
+        } else if (pesoTotal <= 100) {
+            return 5.8;
+        } else if (pesoTotal <= 200) {
+            return 7;
+        } else if (pesoTotal <= 350) {
+            return 8;
+        }
+        return 0;
+    }
+    public static void main(String[] args) {
+
+        double[] pesos = obtenerPesos();
+        
+        double costoIndividual = calcularCostoIndividual(pesos);
+        
+        double pesoTotal = 0;
+        for (double peso : pesos) {
+            pesoTotal += peso;
+        }
+        double costoUnico = calcularCostoUnico(pesoTotal);
+        
+        if (costoIndividual < costoUnico) {
+            System.out.println("Es más económico enviar cada paquete por separado. Costo total: " + costoIndividual + " Bs");
+        } else {
+            System.out.println("Es más económico enviar todos los paquetes juntos. Costo total: " + costoUnico + " Bs");
+        }
+    }
+}
