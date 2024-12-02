@@ -1,0 +1,468 @@
+                PRACTICA FINAL 
+Ejercicio 1 
+public class Main {
+
+    public static void main(String[] args) {
+        
+        int costoFijoDiario = 800;
+        int costoVariable = 20;
+        int diasPorMes = 30;
+        int costoMaximoPorSombrero = 25;
+
+        int cantidadDiariaMinima =  (costoFijoDiario / (costoMaximoPorSombrero - costoVariable));
+        
+        int cantidadMensualMinima = cantidadDiariaMinima * diasPorMes;
+
+        System.out.println("La cantidad mínima de sombreros que debe producir la fábrica diariamente es: " 
+                            + cantidadDiariaMinima);
+        System.out.println("La cantidad mínima de sombreros que debe producir la fábrica mensualmente es: " 
+                            + cantidadMensualMinima);
+    }
+}
+Ejercicio 2 
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] ficha = new int[20];
+        System.out.println("Ingresa los 20 números de la ficha:");
+        for (int i = 0; i < ficha.length; i++) {
+            System.out.print("Número " + (i + 1) + ": ");
+            ficha[i] = scanner.nextInt();
+        }
+
+        int puntosTotales = 0;
+        for (int numero : ficha) {
+            if (esPrimo(numero)) {
+                puntosTotales += 4;
+            }
+            if (numero % 2 == 0) {
+                puntosTotales += 1;
+            }
+            if (numero % 7 == 0) {
+                puntosTotales += 2;
+            }
+        }
+
+        System.out.println("Puntos totales: " + puntosTotales);
+        if (puntosTotales > 70) {
+            System.out.println("¡La ficha es ganadora!");
+        } else {
+            System.out.println("La ficha no es ganadora.");
+        }
+
+    }
+    public static boolean esPrimo(int numero) {
+        if (numero <= 1) return false;
+        for (int i = 2; i <= numero; i++) {
+            if (numero % i == 0) return false;
+        }
+        return true;
+    }
+}
+Ejercicio 3 
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingresa el número de ficha (6 a 7 dígitos): ");
+        int numero = scanner.nextInt();
+
+        if (numero < 100000 || numero > 9999999) {
+            System.out.println("El número ingresado no tiene 6 o 7 dígitos.");
+        } else {
+            if (esNumeroEspejo(numero)) {
+                System.out.println("Te tocó ir a las clases presenciales");
+            } else {
+                System.out.println("Te quedas en casita, ¡pero a estudiar!");
+            }
+        }
+
+        scanner.close();
+    }
+
+   public static boolean esNumeroEspejo(int numero) {
+
+    int original = numero;
+    int invertido = 0;
+
+    while (numero > 0) {
+        int digito = numero % 10;
+        invertido = invertido * 10 + digito;
+        numero /= 10;
+    }
+    return original == invertido;
+}
+
+}
+Ejercicio 4
+import java.util.Random;
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+        Random random = new Random();
+
+        int grupo1 = 0;
+        int grupo2 = 0;
+        int grupo3 = 0;
+        int grupo4 = 0;
+
+        for (int i = 0; i < 1000; i++) {
+
+            int edad = random.nextInt(8) + 10;
+
+            if (edad % 5 == 0 && edad % 2 != 0) {
+                grupo1++;
+            } else if (edad % 4 == 0) {
+                grupo2++;
+            } else if (edad % 3 == 0 && edad % 4 != 0 && edad % 5 != 0 && edad % 2 != 0) {
+                grupo3++;
+            } else {
+                grupo4++;
+            }
+        }
+
+        System.out.println("Grupo 1 : " + grupo1);
+        System.out.println("Grupo 2 : " + grupo2);
+        System.out.println("Grupo 3 : " + grupo3);
+        System.out.println("Grupo 4 : " + grupo4);
+    }
+}
+Ejercicio 5
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        int[] notas = new int[10];
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese las notas de 10 estudiantes:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Nota del estudiante " + (i + 1) + ": ");
+            notas[i] = scanner.nextInt();
+        }
+
+        System.out.println("Las notas ingresadas son:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Estudiante " + (i + 1) + ": " + notas[i]);
+        }
+
+        int suma = 0;
+        for (int i = 0; i < 10; i++) {
+            suma += notas[i];
+        }
+        int promedio = suma / 10;
+        System.out.println("El promedio de las notas es: " + promedio);
+
+        int notaMasAlta = notas[0];
+        int notaMasBaja = notas[0];
+
+        for (int i = 1; i < 10; i++) {
+            if (notas[i] > notaMasAlta) {
+                notaMasAlta = notas[i];
+            }
+            if (notas[i] < notaMasBaja) {
+                notaMasBaja = notas[i];
+            }
+        }
+
+        System.out.println("La nota más alta es: " + notaMasAlta);
+        System.out.println("La nota más baja es: " + notaMasBaja);
+    }
+}
+Ejercicio 6 
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int anchoSala = 100;
+        int largoSala = 60;
+        int areaSala = anchoSala * largoSala;
+        int espacioPorMesa = 2;
+        int capacidadParticipantes = (areaSala / espacioPorMesa) * 3;
+
+        System.out.println("Capacidad total del evento: " + capacidadParticipantes + " participantes.");
+
+        int participantesRegistrados = 0;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (participantesRegistrados < capacidadParticipantes) {
+            
+            System.out.print("Ingrese el nombre del participante: ");
+            String nombre = scanner.nextLine();
+
+            System.out.print("Ingrese la edad del participante: ");
+            int edad = scanner.nextInt();
+            scanner.nextLine();
+
+            if (edad > 15 && edad < 30) {
+                if (participantesRegistrados < capacidadParticipantes) {
+                    participantesRegistrados++;
+                    System.out.println("¡Felicidades! " + nombre + ", eres parte del evento.");
+                } else {
+                    System.out.println("Lo siento, " + nombre + ", el evento está lleno.");
+                }
+            } else {
+                System.out.println("Lo siento, " + nombre + ", tu edad no está en el rango definido.");
+            }
+
+            System.out.print("¿Desea registrar otro participante? (sí/no): ");
+            String continuar = scanner.nextLine();
+            if (continuar.equalsIgnoreCase("no")) {
+                break;
+            }
+        }
+
+        System.out.println("Registro finalizado. Total de participantes registrados: " + participantesRegistrados);
+    }
+}
+Ejercicio 7
+public class Main {
+
+    public static void main(String[] args) {
+        
+        int tablasLargasDisponibles = 26;
+        int tablasCortasDisponibles = 33;
+        int ganchosPequenosDisponibles = 200;
+        int ganchosGrandesDisponibles = 20;
+        int tornillosDisponibles = 510;
+
+        int tablasLargasPorEstante = 4;
+        int tablasCortasPorEstante = 6;
+        int ganchosPequenosPorEstante = 12;
+        int ganchosGrandesPorEstante = 2;
+        int tornillosPorEstante = 14;
+
+        int estantesSolicitados = 15;
+
+        int tablasLargasNecesarias = tablasLargasPorEstante * estantesSolicitados;
+        int tablasCortasNecesarias = tablasCortasPorEstante * estantesSolicitados;
+        int ganchosPequenosNecesarios = ganchosPequenosPorEstante * estantesSolicitados;
+        int ganchosGrandesNecesarios = ganchosGrandesPorEstante * estantesSolicitados;
+        int tornillosNecesarios = tornillosPorEstante * estantesSolicitados;
+
+        boolean suficienteMaterial = tablasLargasDisponibles >= tablasLargasNecesarias &&
+                                      tablasCortasDisponibles >= tablasCortasNecesarias &&
+                                      ganchosPequenosDisponibles >= ganchosPequenosNecesarios &&
+                                      ganchosGrandesDisponibles >= ganchosGrandesNecesarios &&
+                                      tornillosDisponibles >= tornillosNecesarios;
+
+        if (suficienteMaterial) {
+            System.out.println("Es posible realizar los 15 estantes pedidos.");
+
+            int tablasLargasSobrantes = tablasLargasDisponibles - tablasLargasNecesarias;
+            int tablasCortasSobrantes = tablasCortasDisponibles - tablasCortasNecesarias;
+            int ganchosPequenosSobrantes = ganchosPequenosDisponibles - ganchosPequenosNecesarios;
+            int ganchosGrandesSobrantes = ganchosGrandesDisponibles - ganchosGrandesNecesarios;
+            int tornillosSobrantes = tornillosDisponibles - tornillosNecesarios;
+
+            int estantesConMaterialSobrante = tablasLargasSobrantes / tablasLargasPorEstante;
+
+         if (tablasCortasSobrantes / tablasCortasPorEstante < estantesConMaterialSobrante) {
+               estantesConMaterialSobrante = tablasCortasSobrantes / tablasCortasPorEstante;
+            }
+         if (ganchosPequenosSobrantes / ganchosPequenosPorEstante < estantesConMaterialSobrante) {
+               estantesConMaterialSobrante = ganchosPequenosSobrantes / ganchosPequenosPorEstante;
+            }
+         if (ganchosGrandesSobrantes / ganchosGrandesPorEstante < estantesConMaterialSobrante) {
+                estantesConMaterialSobrante = ganchosGrandesSobrantes / ganchosGrandesPorEstante;
+            }
+         if (tornillosSobrantes / tornillosPorEstante < estantesConMaterialSobrante) {
+            estantesConMaterialSobrante = tornillosSobrantes / tornillosPorEstante;
+            }
+
+         System.out.println("Con el material sobrante puedes construir " + estantesConMaterialSobrante + " estantes.");
+
+        } else {
+            System.out.println("No es posible cubrir el pedido porque faltan:");
+
+            if (tablasLargasDisponibles < tablasLargasNecesarias) {
+                System.out.println((tablasLargasNecesarias - tablasLargasDisponibles) + " tablas largas");
+            }
+            if (tablasCortasDisponibles < tablasCortasNecesarias) {
+                System.out.println((tablasCortasNecesarias - tablasCortasDisponibles) + " tablas cortas");
+            }
+            if (ganchosPequenosDisponibles < ganchosPequenosNecesarios) {
+                System.out.println((ganchosPequenosNecesarios - ganchosPequenosDisponibles) + " ganchos pequeños");
+            }
+            if (ganchosGrandesDisponibles < ganchosGrandesNecesarios) {
+                System.out.println((ganchosGrandesNecesarios - ganchosGrandesDisponibles) + " ganchos grandes");
+            }
+            if (tornillosDisponibles < tornillosNecesarios) {
+                System.out.println((tornillosNecesarios - tornillosDisponibles) + " tornillos");
+            }
+        }
+    }
+}
+Ejercicio 8
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Ingrese la cantidad de tablas largas disponibles: ");
+        int tablasLargasDisponibles = scanner.nextInt();
+        
+        System.out.print("Ingrese la cantidad de tablas cortas disponibles: ");
+        int tablasCortasDisponibles = scanner.nextInt();
+        
+        System.out.print("Ingrese la cantidad de ganchos pequeños disponibles: ");
+        int ganchosPequenosDisponibles = scanner.nextInt();
+        
+        System.out.print("Ingrese la cantidad de ganchos grandes disponibles: ");
+        int ganchosGrandesDisponibles = scanner.nextInt();
+        
+        System.out.print("Ingrese la cantidad de tornillos disponibles: ");
+        int tornillosDisponibles = scanner.nextInt();
+
+        System.out.print("Ingrese la cantidad de estantes a fabricar: ");
+        int estantesSolicitados = scanner.nextInt();
+
+        int tablasLargasPorEstante = 4;
+        int tablasCortasPorEstante = 6;
+        int ganchosPequenosPorEstante = 12;
+        int ganchosGrandesPorEstante = 2;
+        int tornillosPorEstante = 14;
+
+        int tablasLargasNecesarias = tablasLargasPorEstante * estantesSolicitados;
+        int tablasCortasNecesarias = tablasCortasPorEstante * estantesSolicitados;
+        int ganchosPequenosNecesarios = ganchosPequenosPorEstante * estantesSolicitados;
+        int ganchosGrandesNecesarios = ganchosGrandesPorEstante * estantesSolicitados;
+        int tornillosNecesarios = tornillosPorEstante * estantesSolicitados;
+
+
+        boolean suficienteMaterial = tablasLargasDisponibles >= tablasLargasNecesarias &&
+                                      tablasCortasDisponibles >= tablasCortasNecesarias &&
+                                      ganchosPequenosDisponibles >= ganchosPequenosNecesarios &&
+                                      ganchosGrandesDisponibles >= ganchosGrandesNecesarios &&
+                                      tornillosDisponibles >= tornillosNecesarios;
+
+        if (suficienteMaterial) {
+
+            System.out.println("Es posible realizar los " + estantesSolicitados + " estantes pedidos.");
+
+            int tablasLargasSobrantes = tablasLargasDisponibles - tablasLargasNecesarias;
+            int tablasCortasSobrantes = tablasCortasDisponibles - tablasCortasNecesarias;
+            int ganchosPequenosSobrantes = ganchosPequenosDisponibles - ganchosPequenosNecesarios;
+            int ganchosGrandesSobrantes = ganchosGrandesDisponibles - ganchosGrandesNecesarios;
+            int tornillosSobrantes = tornillosDisponibles - tornillosNecesarios;
+
+           int estantesConMaterialSobrante = tablasLargasSobrantes / tablasLargasPorEstante;
+
+           if (tablasCortasSobrantes / tablasCortasPorEstante < estantesConMaterialSobrante) {
+             estantesConMaterialSobrante = tablasCortasSobrantes / tablasCortasPorEstante;
+               }
+            if (ganchosPequenosSobrantes / ganchosPequenosPorEstante < estantesConMaterialSobrante) {
+                 estantesConMaterialSobrante = ganchosPequenosSobrantes / ganchosPequenosPorEstante;
+                   }
+             if (ganchosGrandesSobrantes / ganchosGrandesPorEstante < estantesConMaterialSobrante) {
+               estantesConMaterialSobrante = ganchosGrandesSobrantes / ganchosGrandesPorEstante;
+                     }
+                  if (tornillosSobrantes / tornillosPorEstante < estantesConMaterialSobrante) {
+                 estantesConMaterialSobrante = tornillosSobrantes / tornillosPorEstante;
+                   }
+ 
+         System.out.println("Con el material sobrante puedes construir " + estantesConMaterialSobrante + " estantes.");
+
+        } else {
+            System.out.println("No es posible cubrir el pedido porque faltan:");
+
+            if (tablasLargasDisponibles < tablasLargasNecesarias) {
+                System.out.println((tablasLargasNecesarias - tablasLargasDisponibles) + " tablas largas");
+            }
+            if (tablasCortasDisponibles < tablasCortasNecesarias) {
+                System.out.println((tablasCortasNecesarias - tablasCortasDisponibles) + " tablas cortas");
+            }
+            if (ganchosPequenosDisponibles < ganchosPequenosNecesarios) {
+                System.out.println((ganchosPequenosNecesarios - ganchosPequenosDisponibles) + " ganchos pequeños");
+            }
+            if (ganchosGrandesDisponibles < ganchosGrandesNecesarios) {
+                System.out.println((ganchosGrandesNecesarios - ganchosGrandesDisponibles) + " ganchos grandes");
+            }
+            if (tornillosDisponibles < tornillosNecesarios) {
+                System.out.println((tornillosNecesarios - tornillosDisponibles) + " tornillos");
+            }
+        }
+    }
+}
+Ejercicio 9 
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("¿Cuántos paquetes deseas enviar? ");
+        int numPaquetes = scanner.nextInt();
+
+        double[] pesos = new double[numPaquetes];
+        double totalPeso = 0;
+
+        for (int i = 0; i < numPaquetes; i++) {
+            System.out.print("Ingrese el peso del paquete #" + (i + 1) + " en gramos: ");
+            pesos[i] = scanner.nextDouble();
+            totalPeso += pesos[i];
+        }
+
+        double costoIndividual = 0;
+        for (int i = 0; i < numPaquetes; i++) {
+            costoIndividual += calcularTarifa(pesos[i]);
+        }
+
+        double costoTotal = calcularTarifa(totalPeso);
+
+        System.out.println("Costo de enviar los paquetes individualmente: " + costoIndividual + " Bs");
+        System.out.println("Costo de enviar todos los paquetes juntos: " + costoTotal + " Bs");
+
+        if (costoIndividual < costoTotal) {
+            System.out.println("Es más barato enviar los paquetes individualmente.");
+        } else {
+            System.out.println("Es más barato enviar todos los paquetes juntos.");
+        }
+
+    }
+
+    public static double calcularTarifa(double peso) {
+        if (peso <= 20) {
+            return 3.5;
+        } else if (peso <= 50) {
+            return 4.5;
+        } else if (peso <= 100) {
+            return 5.8;
+        } else if (peso <= 200) {
+            return 7;
+        } else if (peso <= 350) {
+            return 8;
+        } else if (peso <= 500) {
+            return 9;
+        } else if (peso <= 1000) {
+            return 12;
+        } else if (peso <= 2000) {
+            return 17;
+        } else if (peso <= 3000) {
+            return 21;
+        } else {
+            System.out.println("¡El paquete tiene un costo especial, fuera de los rangos establecidos!");
+            return Double.MAX_VALUE;
+        }
+    }
+}
+
+
+
+
